@@ -1,3 +1,9 @@
+%define cuda_prefix /usr/local-cuda
+%define cuda_bindir /usr/local-cuda/bin
+%define cuda_includedir /usr/local-cuda/include
+%define cuda_libdir /usr/local-cuda/lib64
+%define cuda_datadir /usr/local-cuda/share
+
 %define abi_package %{nil}
 %global commit0 1ad802c45c9a57f1937862536955bdc7f8235707
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
@@ -10,6 +16,7 @@ Release:        103
 License:        GPLv2+
 URL:            http://ffmpeg.org
 Source0:        https://git.ffmpeg.org/gitweb/ffmpeg.git/snapshot/%{commit0}.tar.gz#/%{shortname0}-%{shortcommit0}.tar.gz
+Requires:       libvdpau-lib
 Requires:       %{name}-libs = %{version}-%{release}
 #Requires:       %%{name}-filemap = %%{version}-%%{release}
 BuildRequires:  gmp-dev
@@ -58,6 +65,7 @@ BuildRequires:  Vulkan-Headers-dev Vulkan-Tools Vulkan-Headers
 BuildRequires:  glslang-dev glslang
 BuildRequires:  SPIRV-Tools-dev SPIRV-Cross-dev
 BuildRequires:  SVT-AV1-dev
+BuildRequires:  libvdpau-dev
 BuildRequires:  nv-codec-headers
 
 %description
@@ -104,17 +112,18 @@ export GCC_IGNORE_WERROR=1
 export AR=gcc-ar
 export RANLIB=gcc-ranlib
 export NM=gcc-nm
+export LDFLAGS="-Wl,-rpath=/usr/local-cuda/lib64,-rpath=/opt/3rd-party/bundles/clearfraction/usr/local-cuda/lib64,-rpath=/opt/3rd-party/bundles/clearfraction/usr/lib64"
 export CFLAGS="$CFLAGS -Ofast -fno-lto -falign-functions=32 -fno-semantic-interposition -fstack-protector-strong -fzero-call-used-regs=used -mno-vzeroupper -mprefer-vector-width=256  "
 export FCFLAGS="$CFLAGS -Ofast -fno-lto -falign-functions=32 -fno-semantic-interposition -fstack-protector-strong -fzero-call-used-regs=used -mno-vzeroupper -mprefer-vector-width=256  "
 export FFLAGS="$CFLAGS -Ofast -fno-lto -falign-functions=32 -fno-semantic-interposition -fstack-protector-strong -fzero-call-used-regs=used -mno-vzeroupper -mprefer-vector-width=256  "
 export CXXFLAGS="$CXXFLAGS -Ofast -fno-lto -falign-functions=32 -fno-semantic-interposition -fstack-protector-strong -fzero-call-used-regs=used -mno-vzeroupper -mprefer-vector-width=256  "
 ./configure --disable-static --extra-ldflags='-ldl' \
-    --prefix=%{_prefix} \
-    --bindir=%{_bindir} \
-    --datadir=%{_datadir}/%{shortname0} \
-    --incdir=%{_includedir}/%{shortname0} \
-    --libdir=%{_libdir} \
-    --shlibdir=%{_libdir} \
+    --prefix=%{cuda_prefix} \
+    --bindir=%{cuda_bindir} \
+    --datadir=%{cuda_datadir}/%{shortname0} \
+    --incdir=%{cuda_includedir}/%{shortname0} \
+    --libdir=%{cuda_libdir} \
+    --shlibdir=%{cuda_libdir} \
     --enable-rdft \
     --enable-pixelutils \
     --extra-ldflags='-ldl' \
@@ -158,14 +167,18 @@ export CXXFLAGS="$CXXFLAGS -Ofast -fno-lto -falign-functions=32 -fno-semantic-in
     --enable-libfdk-aac --enable-nonfree \
     --enable-libdav1d \
     --enable-vulkan --enable-libglslang --enable-libsvtav1 \
-    --enable-nvdec
+    --enable-nvdec --enable-vdpau
 make  %{?_smp_mflags}
 
 
 %install
 rm -rf %{buildroot}
 %make_install
-rm -rf %{buildroot}/usr/share/examples
+rm -rf %{buildroot}%{cuda_datadir}/examples
+mv %{buildroot}%{cuda_prefix} %{buildroot}/usr/local
+pushd %{buildroot}/usr
+ln -s local local-cuda
+popd
 
 
 %post libs -p /usr/bin/ldconfig
@@ -174,21 +187,21 @@ rm -rf %{buildroot}/usr/share/examples
 
 %files
 %defattr(-,root,root,-)
-%{_bindir}/ffmpeg
-%{_bindir}/ffplay
-%{_bindir}/ffprobe
-%{_datadir}/%{shortname0}
+/usr/local/bin/ffmpeg
+/usr/local/bin/ffplay
+/usr/local/bin/ffprobe
+/usr/local/share/%{shortname0}
 
 %files libs
 %defattr(-,root,root,-)
-%{_libdir}/lib*.so.*
-%{_libdir}/libavdevice.so.*
+/usr/local/lib64/lib*.so.*
+/usr/local-cuda
 
 %files dev
 %defattr(-,root,root,-)
-%{_includedir}/%{shortname0}
-%{_libdir}/pkgconfig/lib*.pc
-%{_libdir}/lib*.so
+/usr/local/include/%{shortname0}
+/usr/local/lib64/pkgconfig/lib*.pc
+/usr/local/lib64/lib*.so
 
 
 %changelog

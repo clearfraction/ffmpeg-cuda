@@ -5,7 +5,8 @@
 %define cuda_datadir /usr/local-cuda/share
 
 %define abi_package %{nil}
-%global commit0 1ad802c45c9a57f1937862536955bdc7f8235707
+%global gitdate 20220815
+%global commit0 8479e2fc8bdfc80ed7f376594c3833c01d970030
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global shortname0 ffmpeg
 

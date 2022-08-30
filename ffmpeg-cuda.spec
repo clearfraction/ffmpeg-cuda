@@ -5,15 +5,15 @@
 %define cuda_datadir /usr/local-cuda/share
 
 %define abi_package %{nil}
-%global gitdate 20220821
-%global commit0 6ee1996721710a6b15d5664446964d7b835ff3a6
+%global gitdate 20220829
+%global commit0 6f53f0d09ea4c9c7f7354f018a87ef840315207d
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global shortname0 ffmpeg
 
 Summary:        Digital VCR and streaming server
 Name:           ffmpeg-cuda
 Version:        5.1
-Release:        103
+Release:        104
 License:        GPLv2+
 URL:            http://ffmpeg.org
 Source0:        https://git.ffmpeg.org/gitweb/ffmpeg.git/snapshot/%{commit0}.tar.gz#/%{shortname0}-%{shortcommit0}.tar.gz
@@ -169,7 +169,7 @@ export CXXFLAGS="$CXXFLAGS -Ofast -fno-lto -falign-functions=32 -fno-semantic-in
     --enable-libfdk-aac --enable-nonfree \
     --enable-libdav1d \
     --enable-vulkan --enable-libglslang --enable-libsvtav1 \
-    --enable-nvdec --enable-vdpau
+    --enable-nvdec --enable-nvenc --enable-vdpau
 make  %{?_smp_mflags}
 
 

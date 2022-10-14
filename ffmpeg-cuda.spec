@@ -5,15 +5,15 @@
 %define cuda_datadir /usr/local-cuda/share
 
 %define abi_package %{nil}
-%global gitdate 20220925
-%global commit0 05d6157aab34bc49f23284645a8f34ece870f44d
+%global gitdate 20221014
+%global commit0 f5455889fd2a879e1bfeecb7e81c2fd52ebd4baa
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global shortname0 ffmpeg
 
 Summary:        Digital VCR and streaming server
 Name:           ffmpeg-cuda
 Version:        5.1.2
-Release:        108
+Release:        109
 License:        GPLv2+
 URL:            http://ffmpeg.org
 Source0:        https://git.ffmpeg.org/gitweb/ffmpeg.git/snapshot/%{commit0}.tar.gz#/%{shortname0}-%{shortcommit0}.tar.gz

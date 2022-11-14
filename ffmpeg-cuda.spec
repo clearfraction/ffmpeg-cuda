@@ -4,9 +4,8 @@
 %define cuda_libdir /usr/local-cuda/lib64
 %define cuda_datadir /usr/local-cuda/share
 
-%define abi_package %{nil}
-%global gitdate 20221014
-%global commit0 f5455889fd2a879e1bfeecb7e81c2fd52ebd4baa
+%global gitdate 20221114
+%global commit0 3ab11dc5bb6eec9b645da45fe28b1b2c29e92eed
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global shortname0 ffmpeg
 
@@ -68,6 +67,7 @@ BuildRequires:  SPIRV-Tools-dev SPIRV-Cross-dev
 BuildRequires:  SVT-AV1-dev
 BuildRequires:  libvdpau-dev
 BuildRequires:  nv-codec-headers
+BuildRequires:  libplacebo-dev
 
 %description
 FFmpeg is a complete and free Internet live audio and video
@@ -169,7 +169,8 @@ export CXXFLAGS="$CXXFLAGS -Ofast -fno-lto -falign-functions=32 -fno-semantic-in
     --enable-libfdk-aac --enable-nonfree \
     --enable-libdav1d \
     --enable-vulkan --enable-libglslang --enable-libsvtav1 \
-    --enable-nvdec --enable-nvenc --enable-vdpau
+    --enable-nvdec --enable-nvenc --enable-vdpau \
+    --enable-libplacebo
 make  %{?_smp_mflags}
 
 

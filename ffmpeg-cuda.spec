@@ -4,8 +4,8 @@
 %define cuda_libdir /usr/local-cuda/lib64
 %define cuda_datadir /usr/local-cuda/share
 
-%global gitdate 20230101
-%global commit0 62da0b4a741a064f118a0eece496d6bcc437ec91
+%global gitdate 20230226
+%global commit0 ea3d24bbe3c58b171e55fe2151fc7ffaca3ab3d2
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global shortname0 ffmpeg
 

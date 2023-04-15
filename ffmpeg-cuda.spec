@@ -11,7 +11,7 @@
 
 Summary:        Digital VCR and streaming server
 Name:           ffmpeg-cuda
-Version:        5.1.2
+Version:        6.0
 Release:        109
 License:        GPLv2+
 URL:            http://ffmpeg.org
@@ -66,7 +66,7 @@ BuildRequires:  glslang-dev glslang
 BuildRequires:  SPIRV-Tools-dev SPIRV-Cross-dev
 BuildRequires:  SVT-AV1-dev
 BuildRequires:  libvdpau-dev
-BuildRequires:  nv-codec-headers
+BuildRequires:  nv-codec-headers-dev
 BuildRequires:  libplacebo-dev
 
 %description

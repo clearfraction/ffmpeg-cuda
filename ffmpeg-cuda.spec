@@ -68,6 +68,18 @@ BuildRequires:  SVT-AV1-dev
 BuildRequires:  libvdpau-dev
 BuildRequires:  nv-codec-headers-dev
 BuildRequires:  libplacebo-dev
+BuildRequires:  zimg-dev
+BuildRequires:  xvidcore-dev
+BuildRequires:  vid.stab-dev
+BuildRequires:  libtheora-dev
+BuildRequires:  libssh-dev libssh2-dev
+BuildRequires:  srt-dev
+BuildRequires:  speex-dev
+BuildRequires:  librsvg-dev
+BuildRequires:  libopenmpt-dev
+BuildRequires:  openjpeg-dev
+BuildRequires:  libaom-dev
+BuildRequires:  ladspa_sdk-dev
 
 %description
 FFmpeg is a complete and free Internet live audio and video
@@ -126,6 +138,7 @@ export CXXFLAGS="$CXXFLAGS -Ofast -fno-lto -falign-functions=32 -fno-semantic-in
     --incdir=%{cuda_includedir}/%{shortname0} \
     --libdir=%{cuda_libdir} \
     --shlibdir=%{cuda_libdir} \
+    --enable-lto \
     --enable-rdft \
     --enable-pixelutils \
     --extra-ldflags='-ldl' \
@@ -170,7 +183,20 @@ export CXXFLAGS="$CXXFLAGS -Ofast -fno-lto -falign-functions=32 -fno-semantic-in
     --enable-libdav1d \
     --enable-vulkan --enable-libglslang --enable-libsvtav1 \
     --enable-nvdec --enable-nvenc --enable-vdpau \
-    --enable-libplacebo
+    --enable-libplacebo \
+    --enable-ladspa \
+    --enable-libaom \
+    --enable-libopenjpeg \
+    --enable-libopenmpt \
+    --enable-librsvg \
+    --enable-libspeex \
+    --enable-libsrt \
+    --enable-libssh \
+    --enable-libtheora \
+    --enable-libvidstab \
+    --enable-libxcb \
+    --enable-libzimg
+    
 make  %{?_smp_mflags}
 
 

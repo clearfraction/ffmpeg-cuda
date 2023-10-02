@@ -66,7 +66,6 @@ BuildRequires:  glslang-dev glslang
 BuildRequires:  SPIRV-Tools-dev SPIRV-Cross-dev
 BuildRequires:  SVT-AV1-dev
 BuildRequires:  libvdpau-dev
-BuildRequires:  nv-codec-headers-dev
 BuildRequires:  libplacebo-dev
 BuildRequires:  zimg-dev
 BuildRequires:  xvidcore-dev
@@ -117,6 +116,11 @@ sed -i "s|-lOSDependent||" configure
 sed -i "s|-lOGLCompiler||" configure
 sed -i "s|-lMachineIndependent||" configure
 sed -i "s|-lGenericCodeGen||" configure
+unset https_proxy
+git clone https://git.videolan.org/git/ffmpeg/nv-codec-headers.git
+cd nv-codec-headers
+make
+make PREFIX=/usr LIBDIR=lib64 install
 
 
 %build

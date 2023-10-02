@@ -4,8 +4,8 @@
 %define cuda_libdir /usr/local-cuda/lib64
 %define cuda_datadir /usr/local-cuda/share
 
-%global gitdate 20231002
-%global commit0 9e531370b3da27aa72703b9bb40cdd697e88607e
+%global gitdate 20231003
+%global commit0 067ed535f47373927e8bc2ff8eec2c18014197e5
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global shortname0 ffmpeg
 
@@ -66,7 +66,6 @@ BuildRequires:  glslang-dev glslang
 BuildRequires:  SPIRV-Tools-dev SPIRV-Cross-dev
 BuildRequires:  SVT-AV1-dev
 BuildRequires:  libvdpau-dev
-BuildRequires:  libplacebo-dev
 BuildRequires:  zimg-dev
 BuildRequires:  xvidcore-dev
 BuildRequires:  vid.stab-dev
@@ -185,7 +184,6 @@ export CXXFLAGS="$CXXFLAGS -Ofast -fno-lto -falign-functions=32 -fno-semantic-in
     --enable-libdav1d \
     --enable-vulkan --enable-libglslang --enable-libsvtav1 \
     --enable-nvdec --enable-nvenc --enable-vdpau \
-    --enable-libplacebo \
     --enable-ladspa \
     --enable-libaom \
     --enable-libopenjpeg \

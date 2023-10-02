@@ -4,8 +4,8 @@
 %define cuda_libdir /usr/local-cuda/lib64
 %define cuda_datadir /usr/local-cuda/share
 
-%global gitdate 20230226
-%global commit0 ea3d24bbe3c58b171e55fe2151fc7ffaca3ab3d2
+%global gitdate 20231002
+%global commit0 9e531370b3da27aa72703b9bb40cdd697e88607e
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global shortname0 ffmpeg
 
@@ -138,7 +138,6 @@ export CXXFLAGS="$CXXFLAGS -Ofast -fno-lto -falign-functions=32 -fno-semantic-in
     --incdir=%{cuda_includedir}/%{shortname0} \
     --libdir=%{cuda_libdir} \
     --shlibdir=%{cuda_libdir} \
-    --enable-rdft \
     --enable-pixelutils \
     --extra-ldflags='-ldl' \
     --enable-vaapi \

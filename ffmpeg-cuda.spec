@@ -138,7 +138,6 @@ export CXXFLAGS="$CXXFLAGS -Ofast -fno-lto -falign-functions=32 -fno-semantic-in
     --incdir=%{cuda_includedir}/%{shortname0} \
     --libdir=%{cuda_libdir} \
     --shlibdir=%{cuda_libdir} \
-    --enable-lto \
     --enable-rdft \
     --enable-pixelutils \
     --extra-ldflags='-ldl' \

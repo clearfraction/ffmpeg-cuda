@@ -15,7 +15,7 @@ Version:        6.0
 Release:        109
 License:        GPLv2+
 URL:            http://ffmpeg.org
-Source0:        https://git.ffmpeg.org/gitweb/ffmpeg.git/snapshot/%{commit0}.tar.gz#/%{shortname0}-%{shortcommit0}.tar.gz
+Source0:        https://ffmpeg.org/releases/ffmpeg-%{version}.tar.xz
 Requires:       libvdpau-lib
 Requires:       %{name}-libs = %{version}-%{release}
 #Requires:       %%{name}-filemap = %%{version}-%%{release}
@@ -79,6 +79,11 @@ BuildRequires:  openjpeg-dev
 BuildRequires:  libaom-dev
 BuildRequires:  ladspa_sdk-dev
 
+Patch1: https://src.fedoraproject.org/rpms/ffmpeg/raw/rawhide/f/0001-avcodec-x86-mathops-clip-constants-used-with-shift-i.patch
+Patch2: https://src.fedoraproject.org/rpms/ffmpeg/raw/rawhide/f/0001-avfilter-vf_libplacebo-remove-deprecated-field.patch
+Patch3: https://src.fedoraproject.org/rpms/ffmpeg/raw/rawhide/f/0001-avfilter-vf_libplacebo-wrap-deprecated-opts-in-FF_AP.patch
+
+
 %description
 FFmpeg is a complete and free Internet live audio and video
 broadcasting solution for Linux/Unix. It also includes a digital
@@ -109,7 +114,10 @@ and video, MPEG4, h263, ac3, asf, avi, real, mjpeg, and flash.
 This package contains development files for %{name}
 
 %prep
-%setup -n %{shortname0}-%{shortcommit0}
+%setup -n %{name}-%{version}
+%patch -P 1 -p1
+#%patch -P 2 -p1
+%patch -P 3 -p1
 # erase glslang flags from configure checks
 sed -i "s|-lOSDependent||" configure
 sed -i "s|-lOGLCompiler||" configure

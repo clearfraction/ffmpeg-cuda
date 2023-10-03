@@ -114,7 +114,7 @@ and video, MPEG4, h263, ac3, asf, avi, real, mjpeg, and flash.
 This package contains development files for %{name}
 
 %prep
-%setup -n %{name}-%{version}
+%setup -n ffmpeg-%{version}
 %patch -P 1 -p1
 #%patch -P 2 -p1
 %patch -P 3 -p1

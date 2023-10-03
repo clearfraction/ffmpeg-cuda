@@ -78,6 +78,7 @@ BuildRequires:  libopenmpt-dev
 BuildRequires:  openjpeg-dev
 BuildRequires:  libaom-dev
 BuildRequires:  ladspa_sdk-dev
+BuildRequires:  nv-codec-headers nv-codec-headers-dev
 
 Patch1: https://src.fedoraproject.org/rpms/ffmpeg/raw/rawhide/f/0001-avcodec-x86-mathops-clip-constants-used-with-shift-i.patch
 Patch2: https://src.fedoraproject.org/rpms/ffmpeg/raw/rawhide/f/0001-avfilter-vf_libplacebo-remove-deprecated-field.patch
@@ -123,11 +124,11 @@ sed -i "s|-lOSDependent||" configure
 sed -i "s|-lOGLCompiler||" configure
 sed -i "s|-lMachineIndependent||" configure
 sed -i "s|-lGenericCodeGen||" configure
-unset https_proxy
-git clone https://git.videolan.org/git/ffmpeg/nv-codec-headers.git
-cd nv-codec-headers
-make
-make PREFIX=/usr LIBDIR=lib64 install
+#unset https_proxy
+#git clone https://git.videolan.org/git/ffmpeg/nv-codec-headers.git
+#cd nv-codec-headers
+#make
+#make PREFIX=/usr LIBDIR=lib64 install
 
 
 %build

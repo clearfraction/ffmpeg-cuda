@@ -11,7 +11,7 @@
 
 Summary:        Digital VCR and streaming server
 Name:           ffmpeg-cuda
-Version:        6.0
+Version:        6.1.1
 Release:        109
 License:        GPLv2+
 URL:            http://ffmpeg.org
@@ -80,10 +80,6 @@ BuildRequires:  libaom-dev
 BuildRequires:  ladspa_sdk-dev
 BuildRequires:  nv-codec-headers nv-codec-headers-dev
 
-Patch1: https://src.fedoraproject.org/rpms/ffmpeg/raw/rawhide/f/0001-avcodec-x86-mathops-clip-constants-used-with-shift-i.patch
-Patch2: https://src.fedoraproject.org/rpms/ffmpeg/raw/rawhide/f/0001-avfilter-vf_libplacebo-remove-deprecated-field.patch
-Patch3: https://src.fedoraproject.org/rpms/ffmpeg/raw/rawhide/f/0001-avfilter-vf_libplacebo-wrap-deprecated-opts-in-FF_AP.patch
-
 
 %description
 FFmpeg is a complete and free Internet live audio and video
@@ -116,9 +112,6 @@ This package contains development files for %{name}
 
 %prep
 %setup -n ffmpeg-%{version}
-%patch -P 1 -p1
-#%patch -P 2 -p1
-%patch -P 3 -p1
 # erase glslang flags from configure checks
 sed -i "s|-lOSDependent||" configure
 sed -i "s|-lOGLCompiler||" configure

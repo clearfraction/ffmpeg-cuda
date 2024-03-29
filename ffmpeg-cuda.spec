@@ -60,10 +60,10 @@ BuildRequires:  rtmpdump-dev
 BuildRequires:  pkgconfig(libmfx)
 BuildRequires:  appstream-glib-dev
 BuildRequires:  dav1d-dev
-BuildRequires:  Vulkan-Loader-dev Vulkan-Loader 
-BuildRequires:  Vulkan-Headers-dev Vulkan-Tools Vulkan-Headers
-BuildRequires:  glslang-dev glslang
-BuildRequires:  SPIRV-Tools-dev SPIRV-Cross-dev
+#BuildRequires:  Vulkan-Loader-dev Vulkan-Loader 
+#BuildRequires:  Vulkan-Headers-dev Vulkan-Tools Vulkan-Headers
+#BuildRequires:  glslang-dev glslang
+#BuildRequires:  SPIRV-Tools-dev SPIRV-Cross-dev
 BuildRequires:  SVT-AV1-dev
 BuildRequires:  libvdpau-dev
 BuildRequires:  zimg-dev
@@ -79,6 +79,8 @@ BuildRequires:  openjpeg-dev
 BuildRequires:  libaom-dev
 BuildRequires:  ladspa_sdk-dev
 BuildRequires:  nv-codec-headers nv-codec-headers-dev
+BuildRequires:  shaderc-dev
+
 
 
 %description
@@ -184,7 +186,7 @@ export CXXFLAGS="$CXXFLAGS -Ofast -fno-lto -falign-functions=32 -fno-semantic-in
     --disable-doc \
     --enable-libfdk-aac --enable-nonfree \
     --enable-libdav1d \
-    --enable-vulkan --enable-libglslang --enable-libsvtav1 \
+    --enable-libsvtav1 \
     --enable-nvdec --enable-nvenc --enable-vdpau \
     --enable-ladspa \
     --enable-libaom \
@@ -197,8 +199,14 @@ export CXXFLAGS="$CXXFLAGS -Ofast -fno-lto -falign-functions=32 -fno-semantic-in
     --enable-libtheora \
     --enable-libvidstab \
     --enable-libxcb \
-    --enable-libzimg --enable-libplacebo
-    
+    --enable-libzimg 
+
+# --enable-libplacebo
+# --enable-vulkan 
+# --enable-libglslang
+# --enable-libshaderc
+
+
 make  %{?_smp_mflags}
 
 

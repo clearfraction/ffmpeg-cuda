@@ -78,7 +78,7 @@ BuildRequires:  libopenmpt-dev
 BuildRequires:  openjpeg-dev
 BuildRequires:  libaom-dev
 BuildRequires:  ladspa_sdk-dev
-BuildRequires:  nv-codec-headers nv-codec-headers-dev
+#BuildRequires:  nv-codec-headers nv-codec-headers-dev
 BuildRequires:  shaderc-dev
 
 
@@ -119,12 +119,13 @@ sed -i "s|-lOSDependent||" configure
 sed -i "s|-lOGLCompiler||" configure
 sed -i "s|-lMachineIndependent||" configure
 sed -i "s|-lGenericCodeGen||" configure
-#unset https_proxy
-#git clone https://git.videolan.org/git/ffmpeg/nv-codec-headers.git
-#cd nv-codec-headers
-#make
-#make PREFIX=/usr LIBDIR=lib64 install
-
+# newest nv-codev-headers
+unset https_proxy
+git clone https://git.videolan.org/git/ffmpeg/nv-codec-headers.git
+pushd nv-codec-headers
+    make
+    make PREFIX=/usr LIBDIR=lib64 install
+popd
 
 %build
 export LANG=C.UTF-8

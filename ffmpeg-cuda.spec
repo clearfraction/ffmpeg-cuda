@@ -4,14 +4,14 @@
 %define cuda_libdir /usr/local-cuda/lib64
 %define cuda_datadir /usr/local-cuda/share
 
-%global gitdate 20231003
-%global commit0 067ed535f47373927e8bc2ff8eec2c18014197e5
+%global gitdate 20240405
+%global commit0 083443d67cb159ce469e5d902346b8d0c2cd1c93
 %global shortcommit0 %(c=%{commit0}; echo ${c:0:7})
 %global shortname0 ffmpeg
 
 Summary:        Digital VCR and streaming server
 Name:           ffmpeg-cuda
-Version:        6.1.1
+Version:        7.0
 Release:        109
 License:        GPLv2+
 URL:            http://ffmpeg.org

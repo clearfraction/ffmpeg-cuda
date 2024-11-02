@@ -11,7 +11,7 @@
 
 Summary:        Digital VCR and streaming server
 Name:           ffmpeg-cuda
-Version:        7.0
+Version:        7.1
 Release:        109
 License:        GPLv2+
 URL:            http://ffmpeg.org

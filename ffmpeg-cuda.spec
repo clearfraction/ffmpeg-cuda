@@ -66,6 +66,7 @@ BuildRequires:  glslang-dev glslang
 BuildRequires:  SPIRV-Tools-dev SPIRV-Cross-dev
 BuildRequires:  SVT-AV1-dev
 BuildRequires:  libvdpau-dev
+BuildRequires:  libplacebo-dev
 BuildRequires:  zimg-dev
 BuildRequires:  xvidcore-dev
 BuildRequires:  vid.stab-dev

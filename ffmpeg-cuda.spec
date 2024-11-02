@@ -79,7 +79,6 @@ BuildRequires:  openjpeg-dev
 BuildRequires:  libaom-dev
 BuildRequires:  ladspa_sdk-dev
 #BuildRequires:  nv-codec-headers nv-codec-headers-dev
-BuildRequires:  shaderc-dev
 
 
 
@@ -202,10 +201,8 @@ export CXXFLAGS="$CXXFLAGS -Ofast -fno-lto -falign-functions=32 -fno-semantic-in
     --enable-libxcb \
     --enable-libzimg \
     --enable-libplacebo \
-    --enable-vulkan \
-    --enable-libshaderc
-    
-# --enable-libglslang
+    --enable-vulkan \    
+    --enable-libglslang
 
 make  %{?_smp_mflags}
 

@@ -241,6 +241,5 @@ popd
 /usr/local/lib64/lib*.so
 
 
-%changelog
 # based on https://github.com/UnitedRPMs/ffmpeg
 # and https://github.com/clearlinux-pkgs/not-ffmpeg
